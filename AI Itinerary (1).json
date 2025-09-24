@@ -1,0 +1,282 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "/travel-itinerary",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -256,
+        16
+      ],
+      "id": "d6492033-4210-4c68-be5b-2b851be99dec",
+      "name": "Webhook",
+      "webhookId": "2f0fa168-fb3e-4b26-a712-b5cce1a1351e"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.0-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.0-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are an expert AI travel planner. Generate a detailed, personalized, day-wise itinerary. Give the output as plain text and not markdown format.",
+              "role": "model"
+            },
+            {
+              "content": "=Create a personalized itinerary based on:\n\nDestination: {{$json[\"body\"][\"destination\"]}}\nDeparture City: {{$json[\"body\"][\"currentCity\"]}}\nStart Date: {{$json[\"body\"][\"startDate\"]}}\nDuration: {{$json[\"body\"][\"duration\"]}} days\nBudget: {{$json[\"body\"][\"budget\"]}}\nNumber of Travelers: {{$json[\"body\"][\"travelers\"]}}\nTransport: {{$json[\"body\"][\"transport\"]}}\nPreferences: {{$json[\"body\"][\"preferences\"].join(\", \")}}\n\nInclude:\n- Must-visit places\n- Recommended restaurants\n- Local transport tips\n- Approximate daily cost\n- Any hidden gems if possible."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        464,
+        0
+      ],
+      "id": "9ff8b0cb-f8da-439a-9fb9-85732e2c60d2",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "lU26aqPqmsXDkP5q",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "16kzZbW-4TTDbh2KoD-zZvcrpN2N9Y2UgZrTnYUaJCaY",
+          "mode": "list",
+          "cachedResultName": "AI Itinerary Planner",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16kzZbW-4TTDbh2KoD-zZvcrpN2N9Y2UgZrTnYUaJCaY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16kzZbW-4TTDbh2KoD-zZvcrpN2N9Y2UgZrTnYUaJCaY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "submittedAt": "={{ $('Webhook').item.json.body.submittedAt }}",
+            "email": "={{ $('Webhook').item.json.body.email }}",
+            "destination": "={{ $('Webhook').item.json.body.destination }}",
+            "startDate": "={{ $('Webhook').item.json.body.startDate }}",
+            "duration": "={{ $('Webhook').item.json.body.duration }}",
+            "budget": "={{ $('Webhook').item.json.body.budget }}",
+            "travelers": "={{ $('Webhook').item.json.body.travelers }}",
+            "transport": "={{ $('Webhook').item.json.body.transport }}",
+            "preferences": "={{ $('Webhook').item.json.body.preferences }}",
+            "itinerary": "={{ $json.content.parts[0].text }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "submittedAt",
+              "displayName": "submittedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "destination",
+              "displayName": "destination",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "startDate",
+              "displayName": "startDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "duration",
+              "displayName": "duration",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "budget",
+              "displayName": "budget",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "travelers",
+              "displayName": "travelers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "transport",
+              "displayName": "transport",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "preferences",
+              "displayName": "preferences",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "itinerary",
+              "displayName": "itinerary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        864,
+        0
+      ],
+      "id": "48db8f16-9e7f-433c-90b4-1192cfb3ebfa",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "j6OmcEyy429FynIz",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "gargadish05@gmail.com",
+        "toEmail": "={{ $('Webhook').item.json.body.email }}",
+        "subject": "Trip Itinerary",
+        "html": "=Hi {{$json[\"body\"][\"name\"]}},\n\nHere's your personalized itinerary:\n\n{{ $json.itinerary }}\n\nSafe travels!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1072,
+        0
+      ],
+      "id": "0075e45c-7b53-4b95-ac1c-3c10c234439c",
+      "name": "Send email",
+      "webhookId": "dc7136ca-6104-4841-b1d1-1ca10339603d",
+      "credentials": {
+        "smtp": {
+          "id": "WG14ZDY5fCT51qwP",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "44a2f376-407e-4098-b521-abafcb95ed76",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8fca9b49a3244bd8f2613ec15e4171c6b54b3f67578ba68d7a6d7ba5381a29dd"
+  },
+  "id": "w9I8LUQjXTWwKVVi",
+  "tags": []
+}
