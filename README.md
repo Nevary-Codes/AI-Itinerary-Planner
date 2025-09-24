@@ -1,31 +1,31 @@
 
-# AI Article Generator ✍️
+# AI Itinerary Planner 🗺️
 
 ### Project Overview
-**AI Article Generator** is an AI-powered tool that creates high-quality articles in real-time. Users simply provide a topic, and the AI generates content while updating word and character counts and maintaining a history of recent topics for reference.
+**AI Itinerary Planner** is an AI-powered travel planning assistant that generates customized travel itineraries in real-time. Users provide their trip details — including destination, dates, budget, and preferences — and the AI produces a day-by-day plan, complete with recommendations, activities, and travel arrangements.
 
-This project uses **n8n** to orchestrate AI agent workflows for generating content, making it flexible and easy to extend.
+This project uses **n8n** to orchestrate AI agent workflows, enabling flexible itinerary generation and easy integration with multiple data sources.
 
 ### 🌟 Features
-- **Natural Language Input**: Enter any topic and receive AI-generated content instantly.
-- **Streaming Output**: See the article appear as it’s generated in real-time.
-- **Word & Character Metrics**: Live counts updated during generation.
-- **Recent Topics History**: Tracks past topics with timestamps and generation time.
-- **Example Topics**: Quick-start buttons for testing.
-- **Error Handling**: Displays warnings for missing input or failed generation.
+- **Natural Language Input**: Enter your travel requirements in simple language.
+- **Dynamic Itinerary Generation**: Get a complete, tailored itinerary in real time.
+- **Live Metrics**: See word count and estimated time while itinerary is generated.
+- **Recent Trips History**: Keeps track of recent trips with timestamps and planning duration.
+- **Example Trips**: Quick-start buttons for sample itineraries.
+- **Error Handling**: Displays warnings for missing or incorrect inputs.
 
 ### 🛠️ Tech Stack
 - **Frontend**: Next.js 14 with TypeScript
 - **Styling**: Tailwind CSS
 - **Icons**: Lucide React
 - **Animations**: Framer Motion
-- **AI Integration**: n8n (custom AI agents and workflows)
+- **AI Integration**: n8n (custom travel planning agents)
 
 ### 🚀 Quick Start
 
 #### Prerequisites
 - Node.js 18+
-- n8n instance running (local or cloud) with configured AI agents
+- n8n instance running (local or cloud) with configured travel planning agents
 - Git
 
 #### Installation
@@ -33,7 +33,7 @@ This project uses **n8n** to orchestrate AI agent workflows for generating conte
 1. **Clone the Repository**
 ```bash
 git clone <your-repo-url>
-cd ai-article-generator
+cd ai-itinerary-planner
 ```
 
 2. **Install Dependencies**
@@ -50,40 +50,40 @@ npm run dev
 Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### 🎮 How to Use
-1. Enter a topic in the input field.
-2. Click **Generate Article**.
-3. Watch the article appear in real time.
-4. View word and character counts as generation progresses.
-5. Review past topics in the **Recent Topics** section.
-6. Click example topics to try the tool instantly.
+1. Enter your trip details (destination, dates, budget, preferences, etc.).
+2. Click **Generate Itinerary**.
+3. Watch the itinerary appear in real time.
+4. Check metrics such as word count and generation time.
+5. Review past trips in the **Recent Trips** section.
+6. Click example trips for quick testing.
 
 ### 🤖 AI Integration with n8n
 The AI workflow:
-- Accepts user input from the frontend.
-- Sends the request to **n8n AI agents** for processing.
-- Streams generated content back to the UI in real time.
-- Stores topic history along with metrics like generation time.
+- Receives user travel details from the frontend.
+- Sends the request to **n8n travel planning agents** for processing.
+- Streams generated itinerary content back to the UI in real time.
+- Stores trip history along with metrics like generation time.
 
-This setup allows:
-- Easy modification of AI workflows without touching frontend code.
-- Integration of multiple AI tools and APIs.
-- Scalability for future features.
+This approach allows:
+- Easy customization of itinerary generation workflows.
+- Integration with travel APIs and external data sources.
+- Scalability for future travel planning features.
 
 ### 🎨 Customization
-- **UI & Features**: Edit `components/ArticleGenerator.tsx`.
+- **UI & Features**: Edit `components/ItineraryPlanner.tsx`.
 - **Styling**: Update `globals.css` or `tailwind.config.js`.
 - **AI Agents**: Modify workflows in n8n.
 
 ### 📊 Educational Impact
-- Demonstrates AI-assisted writing.
-- Shows real-time streaming with live metrics.
-- Highlights how AI can be orchestrated with n8n agents.
+- Demonstrates AI-assisted travel planning.
+- Shows real-time itinerary generation with live metrics.
+- Highlights how AI workflows can be orchestrated using n8n.
 
 ### 🔧 Development
 
 #### Project Structure
 ```
-ai-article-generator/
+ai-itinerary-planner/
 ├── app/
 │   ├── api/
 │   │   └── process-command/ # API route to send requests to n8n agents
@@ -91,7 +91,7 @@ ai-article-generator/
 │   ├── layout.tsx
 │   └── page.tsx
 ├── components/
-│   └── ArticleGenerator.tsx
+│   └── ItineraryPlanner.tsx
 ├── package.json
 ├── tailwind.config.js
 └── tsconfig.json
@@ -112,8 +112,7 @@ ai-article-generator/
 5. Submit a pull request
 
 ### 📄 License
-Part of the **OpenxAI Global AI Accelerator**.
 
-*"The best way to improve your writing is to start writing."*
+*"The best way to improve your travel experience is to start planning."*
 
-**✍️ AI Article Generator — Real-time AI Writing Assistant Powered by n8n**
+**✈️ AI Itinerary Planner — Real-time AI Travel Assistant Powered by n8n**
