@@ -6,6 +6,8 @@
 
 This project uses **n8n** to orchestrate AI agent workflows, enabling flexible itinerary generation and easy integration with multiple data sources.
 
+I have made this project solo and I am part of no team.
+
 ### 🌟 Features
 - **Natural Language Input**: Enter your travel requirements in simple language.
 - **Dynamic Itinerary Generation**: Get a complete, tailored itinerary in real time.
